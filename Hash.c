@@ -1,64 +1,98 @@
 #include <stdbool.h>
-#include <stdlib.h>
+#include <math.h>
 
 
-struct list {
-  ht_elem data;
-  struct list* next;
-};
-typedef struct list* list;
+typedef struct element {
+    int key;
+    int value;
+} element;
 
 
-void list_free(list p, void (*elem_free)(elem)) {
-  list q;
-  while (p != NULL) {
-    if (p->data != NULL && elem_free != NULL)
-      (*elem_free)(p->data);
-    q = p->next;
-    free(p);
-    p = q;
-  }
-}
-//Got a lot of help and infromation from http://www.cs.yale.edu/homes/aspnes/pinewiki/C%282f%29HashTables.html
-//and https://gist.github.com/tonious/1377667. I was extremely confused even with help from the book.
+typedef struct table {
+    element *HT[100];
+} table;
 
-table table_new(int init_size,
-		 ht_key (*elem_key)(elem),
-		 bool (*equal)(key1, key2),
-		 int (*hash)(key, int m))
-{ REQUIRES(init_size > 1);
-  chain* A = xcalloc(init_size, sizeof(chain));
-  table H = xmalloc(sizeof(struct table));
-  H.size = init_size;
-  H.num = 0;
-  H.array = A;
-  H.elem_key = elem_key;
-  H.equal = equal;
-  H.hash = hash;
-  ENSURES(is_table(H));
-  return H;
+
+void insert(int key, int value)
+{
+    for(i = 0; i <= strlen(key); i++)
+      HT-> HT[key] = HT[key];
 }
 
-insert(table H, elem) 
-{ REQUIRES(is_table(H));
-  ht_elem old_e;
-  key = (*H->elem_key)(e);
-  int h = (*H->hash)(k, H->size);
-  if (H.array[h] == NULL)
-    H.array[h] = chain_new();
-  old_e = chain_insert(H, H->array[h], e);
-  if (old_e != NULL) return old_e;
-  H.num++;
-  ENSURES(is_table(H));
-  ENSURES(table_search(H, (*H->elem_key)(e)) == e); /* pointer equality */
-  return NULL;
+
+void search(int key)
+{
+  int h = (*H -> hash)(k, H- > size);
+  if (H -> HT[h] == NULL) return NULL;
+  key = probe (H, H -> HT[h], key);
+  return key;
 }
 
-search(table H, key)
-{ REQUIRES(is_table(H));
-  int h = (*H->hash)(k, H->size);
-  if (H->array[h] == NULL) return NULL;
-  elem = chain_search(H, H->array[h], k);
-  ENSURES(e == NULL || (*H->equal)((*H->elem_key)(e), k));
-  return e;
+
+void multiply(int k)
+{
+    int A = 0.6180339887
+    return (int) (m(kA % 1));
+}
+
+
+void divide(int k)
+{
+    return k % m;
+}
+
+
+void inithashtable()
+{
+  
+}
+
+
+void hashfunc(int key)
+{
+    int hashstring(const char* s) {
+      int key = 0;
+      while (*s) {
+        key = key*37 + *s++;
+      }
+      return key;
+    }
+}
+
+
+void probe(int key, int value)
+{
+    int probe = hashfunc(value);
+    int i;
+    for(i = 0; i < hashtable; i++)
+    { 
+        if(HT[probe] == value)
+            return TRUE;  
+        probe = fmod((probe+1), m);
+    }
+    return FALSE; 
+}
+
+
+void print_datastructure(int HT)
+{
+    int i=0;
+    while( (hashtable -> HT[i]) != NULL)
+    {
+       printf(" %s \t", hashtable -> HT[i] -> );
+       hashtable -> HT[i] = hashtable -> HT[i] -> next;
+     printf("\n");
+     i++;
+    }
+
+}
+
+
+int main()
+{
+    inithashtable()
+    
+    parse_exec();
+    print_datastructure();
+    return 0;
 }
